@@ -2,7 +2,7 @@
 
 - Python. 
 
-# How to setup VSCodium to allow push to GitHub ? 
+# Setup VSCodium to allow push to GitHub
 
 - VSCodium will prompt. 
 - If you agree with it, you will get to a closed end. 
@@ -24,4 +24,39 @@ Creating a Pipfile for this project...
 Python 3.9.2
 ```
 
+## Add unit test dependencies
+
+```
+-- unit testing has to be there. 
+pipenv install --dev pytest
+pipenv install --dev pytest-watch
+pipenv install --dev coverage 
+```
+
+## Run unit test, manually 
+
+```python
+## just a mickey mouse unit test 
+def test_hello_world() : 
+    assert 'Hello world' == 'Hello world'
+```
+
+- run manually
+
+```
+% pipenv run pytest
+``` 
+
+- run automatically evertime any file changes
+
+```
+% pipenv run ptw
+```
+
+## HTML report on unit test coverage 
+
+```
+% pipenv run coverage run --source=. -m pytest
+% pipenv run coverage html 
+```
 
