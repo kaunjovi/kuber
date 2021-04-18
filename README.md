@@ -47,7 +47,7 @@ def test_hello_world() :
 % pipenv run pytest
 ``` 
 
-- run automatically evertime any file changes
+- run automatically everytime any file changes
 
 ```
 % pipenv run ptw
