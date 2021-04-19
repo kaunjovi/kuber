@@ -33,6 +33,12 @@ pipenv install --dev pytest-watch
 pipenv install --dev coverage 
 ```
 
+## And some more dependencies
+
+```
+% pipenv install pandas
+```
+
 ## Run unit test, manually 
 
 ```python
@@ -51,6 +57,7 @@ def test_hello_world() :
 
 ```
 % pipenv run ptw
+% pipenv run ptw --ignore ./integration_tests 
 ```
 
 ## HTML report on unit test coverage 
