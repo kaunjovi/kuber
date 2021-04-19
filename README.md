@@ -56,7 +56,7 @@ def test_hello_world() :
 ## HTML report on unit test coverage 
 
 ```
-% pipenv run coverage run --source=. -m pytest
-% pipenv run coverage html 
+% pipenv run coverage run --source=. -m pytest ; pipenv run coverage html
 ```
+
 
