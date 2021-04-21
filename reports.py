@@ -10,6 +10,7 @@ from download_raw_data import download_data_for_date_string
 import glob
 import pandas as pd
 import constants
+from trade_dates import fetch_trade_date_strings
 
 def extract_date_strings_from_parameters( args ) : 
     date_strings = [] 
@@ -44,12 +45,7 @@ def fetch_raw_data_file_full_paths(date_strings) :
 
     return raw_data_file_full_paths 
 
-
-def get_top_20_deliveries (*args , **kwds) : 
-
-    date_strings = extract_date_strings_from_parameters(args) 
-    logging.debug(f'Fetching raw file for {len(date_strings)} dates.')
-
+def get_top_20_deliveries_for_trade_dates (date_strings ) : 
     raw_data_file_full_paths = fetch_raw_data_file_full_paths(date_strings)
     logging.debug(f'Reading data from {len(raw_data_file_full_paths)} files.')
 
@@ -95,11 +91,33 @@ def get_top_20_deliveries (*args , **kwds) :
 
     return raw_data_file_full_paths , big_frame
 
+
+def get_top_20_deliveries (*args , **kwds) : 
+
+    date_strings = extract_date_strings_from_parameters(args) 
+    logging.debug(f'Fetching raw file for {len(date_strings)} dates.')
+
+    return get_top_20_deliveries_for_trade_dates(date_strings) 
+
 if __name__ == "__main__":
 # #     # run the code for today.
 #     # get_top_20_deliveries()
-    files, df = get_top_20_deliveries('15042021', '16042021', '19042021')
+    # files, df = get_top_20_deliveries('15042021', '16042021', '19042021')
+    files, df = get_top_20_deliveries_for_trade_dates(fetch_trade_date_strings('recent.dates'))
     print(df)
+
+    df_grouped = df.groupby('SYMBOL').agg({'DELIV_LACS': ['mean'], 'SYMBOL': ['count']})
+    # df_grouped = df.groupby('SYMBOL').DELIV_LACS.agg([count, mean])
+    df_grouped.columns = df_grouped.columns.droplevel(0)
+    df_grouped = df_grouped.reset_index() 
+    # df.set_index('mean').sort_index()
+    # print (df_grouped )
+
+    # df_grouped = df.groupby('SYMBOL')
+    print (df_grouped.sort_values(by='mean' , ascending=False)) 
+
+
+
 #     # logging.basicConfig(level=logging.DEBUG)
 #     # get_top_20_deliveries('15042021', '13042021')
 #     # get_top_20_deliveries('15042021')
