@@ -4,13 +4,9 @@ from urllib.error import HTTPError, URLError
 from socket import timeout
 import shutil
 from constants import CONSTANTS
+from constants import get_url_to_download_data_from
+from constants import get_full_path_of_raw_data_file
 
-def get_url_to_download_data_from ( date_string) : 
-    # return 'https://archives.nseindia.com/products/content/' + 'sec_bhavdata_full_' + date_string + '.csv' 
-    return CONSTANTS()['sec_bhavdata_url'] + date_string + '.csv' 
-
-def get_full_path_of_raw_data_file ( date_string) : 
-    return CONSTANTS()['sec_bhavdata_folder'] + date_string + '.csv'
 
 def download_from_url_to_file(url_to_download_data_from, file_to_download_data_at) : 
     try:
@@ -18,7 +14,7 @@ def download_from_url_to_file(url_to_download_data_from, file_to_download_data_a
             shutil.copyfileobj(response, out_file)
 
     except timeout:
-        logging.exception(f'Could not download data from {url_to_download_data_from}')
+        # logging.exception(f'Could not download data from {url_to_download_data_from}')
         raise
 
 def download_data_for_date_string ( date_string ) : 

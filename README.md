@@ -66,4 +66,12 @@ def test_hello_world() :
 % pipenv run coverage run --source=. -m pytest ; pipenv run coverage html
 ```
 
+## Loggin in Python3
 
+```python
+import logging
+...
+logging.basicConfig(level=logging.DEBUG)
+...
+logging.debug(f'Reading data from {len(raw_data_file_full_paths)} files.')
+```
