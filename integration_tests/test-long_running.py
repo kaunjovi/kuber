@@ -2,6 +2,12 @@ from reports import get_top_20_deliveries
 import os
 import pytest
 from socket import timeout
+from sec_bhavdata_full import download_sec_bhavdata_full 
+from top_delivery_files import generate_top_delivery_files
+from util import get_sec_bhavdata_file_name
+from util import get_top_delivery_file_name
+import itertools
+
 
 ###########
 # These are long running tests. 
@@ -32,4 +38,11 @@ def test_attempt_download_data_from_non_trade_dates() :
     file = "/Users/kaunjovi/code/kuber/100_full_bhav_copy/sec_bhavdata_full_17041998.csv"
     if os.path.isfile(file) == True : 
         os.remove(file)
+
+def test_download_sec_bhavdata_full_non_existent_url() : 
     
+    date_strings = ['24042021']
+    file_count, sec_bhavdata_file_names = download_sec_bhavdata_full(date_strings)
+    assert file_count == 0
+    assert len(sec_bhavdata_file_names) == 0  
+
