@@ -16,6 +16,6 @@ def fetch_trade_date_strings (dates_file_name) :
 
     return trade_date_strings
 
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
-    trade_date_strings = fetch_trade_date_strings('recent.dates')
+# if __name__ == "__main__":
+#     logging.basicConfig(level=logging.DEBUG)
+#     trade_date_strings = fetch_trade_date_strings('recent.dates')

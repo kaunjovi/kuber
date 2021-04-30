@@ -1,4 +1,5 @@
 import configparser
+import logging
 
 def CONSTANTS():
     if not hasattr(CONSTANTS, 'config_dict'):
@@ -37,5 +38,20 @@ def get_top_deliveries_file_quoted_first_step() :
 def get_top_deliveries_js_data_file() : 
     return '/Users/kaunjovi/code/kuber-online/data.js' 
 
+# symbols that we want to look into anyway
+# might be by doing fundamental analysis offline. 
+# you want to pick this from a file
+def get_whitelist(): 
+    return ['HDFC', 'HDFCBANK', 'RELAXO']
+
+
 # if __name__ == "__main__":
 #     print (CONSTANTS()['sec_bhavdata_url'])
+
+# if __name__ == "__main__":
+#     logging.basicConfig(level=logging.DEBUG)
+#     logging.debug(f'Checking constants file.')
+#     for symbol in get_whitelist() : 
+#         logging.debug(f'{symbol}')
+
+
