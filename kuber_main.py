@@ -13,4 +13,3 @@ if __name__ == "__main__":
     generate_top_average_delivery_file(date_strings)
     # fetch_whitelist_details (whitelist, date_strings)
     generate_js_data_files(date_strings)
-
