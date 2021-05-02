@@ -1,6 +1,5 @@
 from download_raw_data import download_sec_bhavdata_full 
 import os 
-import constants
 
 def test_download_sec_bhavdata_full() : 
     date_strings = ['01012020']
