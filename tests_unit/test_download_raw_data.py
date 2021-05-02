@@ -1,4 +1,4 @@
-from download_data import download_sec_bhavdata_full 
+from download_raw_data import download_sec_bhavdata_full 
 import os 
 import constants
 
