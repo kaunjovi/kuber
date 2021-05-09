@@ -68,13 +68,41 @@ def test_hello_world() :
 
 ## Loggin in Python3
 
+- (Logging in Python)[https://www.datacamp.com/community/tutorials/logging-in-python?utm_source=adwords_ppc&utm_campaignid=1455363063&utm_adgroupid=65083631748&utm_device=c&utm_keyword=&utm_matchtype=b&utm_network=g&utm_adpostion=&utm_creative=332602034358&utm_targetid=aud-522010995285:dsa-429603003980&utm_loc_interest_ms=&utm_loc_physical_ms=9062111&gclid=CjwKCAjw7diEBhB-EiwAskVi1-r_KRXIGk39dWAStUPL7xOmQMnaeIk1aYcJCrtL1ZQ4piNtvrKhDRoCGiYQAvD_BwE]
+
 ```python
 import logging
 ...
 logging.basicConfig(level=logging.DEBUG)
 ...
 logging.debug(f'Reading data from {len(raw_data_file_full_paths)} files.')
+
 ```
+
+## snippet to configure logging 
+
+```json
+"Log config": {
+    "prefix": "log-config",
+    "body": [
+        "logging.basicConfig(format='%(funcName)s | %(lineno)d | %(message)s', level=logging.DEBUG)"
+    ],
+    "description": "Log config"
+}
+```
+
+```python 
+
+# logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(format='%(funcName)s | %(lineno)d | %(message)s', level=logging.DEBUG)
+# logging.basicConfig(format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s', level=logging.DEBUG)
+# logging.basicConfig(format='[%(filename)s:%(lineno)s - %(funcName)s() ] %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='[%(filename)s:%(lineno)s - %(funcName)s() ] %(message)s', level=logging.DEBUG)
+
+```
+
+
+
 
 https://peaceful-yalow-a1523c.netlify.app/index.html
 
@@ -172,6 +200,26 @@ Learn investing
  
 Averages over a series of dates 
 Delta over a two dates 
+
+
+https://www.iwillteachyoutoberich.com/blog/make-money-in-stocks/
+The quicker you realize that the stock market is not sexy, the faster you will start making money from it.
+
+https://www.iwillteachyoutoberich.com/blog/make-money-in-stocks/
+
+Automate 
+    You are not searching for stocks to invest. You have a list and you have a monthly budget. 
+    You are not trying to time anything. You just have the month to put the budgeted money in. 
+
+
+If we take out the to x% (10?) top winning days, what does that do to the earnings. 
+What if we ask that about all the shares? Where do we have the most impact ? Any trends on those scrips ? 
+
+
+
+
+
+
 
 
 

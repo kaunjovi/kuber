@@ -35,7 +35,7 @@ def download_sec_bhavdata_full( date_strings) :
                 # might be the url was not available. 
                 # dont count this one. The discrepancy would show up. 
 
-                logging.debug(f'Could not download from {raw_data_file_full_path}')
+                logging.debug(f'Could not download from {url}')
 
     return file_count , sec_bhavdata_full
 

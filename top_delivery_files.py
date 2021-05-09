@@ -22,20 +22,23 @@ def generate_top_delivery_files(date_strings, top) :
     top_delivery_file_names = []
 
     for date_string in date_strings : 
+
+        # If the top delivery files are already there, then delete them 
+        # We need clean directory 
         if os.path.isfile(get_top_delivery_file_name(date_string)) == True :
             logging.debug(f'{get_top_delivery_file_name(date_string)} exists. Deleting old. Creating new.')
             os.remove(get_top_delivery_file_name(date_string))
         else : 
             logging.debug(f'{get_top_delivery_file_name(date_string)} does not exist. Creating one now.')
 
+        # If raw data file is present offline, create the top delivery file. 
+        # Else, dont try to download raw file here. Just report that and move on. 
         if os.path.isfile(get_sec_bhavdata_file_name(date_string)) == True :
             df = calculate_top_delivery( get_sec_bhavdata_file_name(date_string), top )
             df.to_csv(get_top_delivery_file_name(date_string), index = False, header=True)
             # logging.debug(df)
             top_delivery_file_names.append(get_top_delivery_file_name(date_string))
             file_count += 1 
-
-
         else : 
             logging.debug(f'Did not find {get_sec_bhavdata_file_name(date_string)}. Not attempting auto fix. Check manually please.')
         

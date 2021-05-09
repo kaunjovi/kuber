@@ -27,35 +27,40 @@ def prep_sec_bhavdata_full( date_strings) :
     file_count = 0 
     prepped_bhavdata_file_names = []
 
-    # if the file is already there, dont do anything. Just move on. 
-    # Action only if the file is not there. 
     for date_string in date_strings : 
 
         prepped_data_file_full_path = constants.get_full_path_of_prepped_data_file(date_string)
-        if os.path.isfile(prepped_data_file_full_path) == False : 
-            logging.debug(f'The prepped file {prepped_data_file_full_path} is not available. Creating now.')
-            raw_data_file = constants.get_sec_bhavdata_file_name(date_string)
-            if os.path.isfile(raw_data_file) : 
-                file_created = generate_analysis_ready_bhavdata_overwrite(date_string)
-                if file_created == True : 
-                    logging.debug(f'{prepped_data_file_full_path} is created now.')
-                    file_count += 1 
-                    prepped_bhavdata_file_names.append(prepped_data_file_full_path)
-                else : 
-                    logging.debug(f'{prepped_data_file_full_path} could not be created. Moving on.')
-            else : 
-                logging.debug(f'Raw data file {raw_data_file} was not present. Moving on.')
 
+        # if the file is already there, delete it. Create new. 
+        if os.path.isfile(prepped_data_file_full_path) == True :
+            logging.debug(f'Deleting old {prepped_data_file_full_path}. Shall try to create new.')
+            os.remove(prepped_data_file_full_path)
+        else :
+            logging.debug(f'{prepped_data_file_full_path} does not exist. Shall try to create new.' ) 
+
+        # Now try to create the prepped file. 
+        raw_data_file = constants.get_sec_bhavdata_file_name(date_string)
+        if os.path.isfile(raw_data_file) : 
+            file_created = generate_analysis_ready_bhavdata_overwrite(date_string)
+            if file_created == True : 
+                logging.debug(f'{prepped_data_file_full_path} is created now.')
+                file_count += 1 
+                prepped_bhavdata_file_names.append(prepped_data_file_full_path)
+            else : 
+                logging.debug(f'{prepped_data_file_full_path} could not be created. Moving on.')
         else : 
-            logging.debug(f'{prepped_data_file_full_path} already exists.')
-            file_count += 1 
-            prepped_bhavdata_file_names.append(prepped_data_file_full_path)
+            logging.debug(f'Raw data file {raw_data_file} was not present. Moving on.')
+
         
     return file_count , prepped_bhavdata_file_names
 
 
 # if __name__ == "__main__":
 #     logging.basicConfig(level=logging.DEBUG)
+
 #     date_strings = ['01011919']
+#     prep_sec_bhavdata_full(date_strings)
+
+#     date_strings = ['01012020']
 #     prep_sec_bhavdata_full(date_strings)
 
