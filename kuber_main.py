@@ -1,7 +1,7 @@
-from trade_dates import fetch_trade_date_strings
+import trade_dates 
 import constants 
-import download_raw_data
-import prep_raw_data
+import download_sec_bhav_data
+import prep_sec_bhav_data
 import filter_top_deliv
 # from sec_bhavdata_full import download_sec_bhavdata_full 
 # from top_delivery_files import generate_top_delivery_files
@@ -12,19 +12,18 @@ import logging
 
 # from whitelist_deliveries import fetch_whitelist_details
 
-
-
 if __name__ == "__main__":
 
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(format='%(filename)s.%(funcName)s().%(lineno)s $$ %(message)s', level=logging.DEBUG)
 
-    # date_strings = ['05042021','06042021','07042021','08042021','09042021']
-    date_strings = fetch_trade_date_strings('recent.dates')
+    # Pull some trade dates to run the process on. 
     # date_strings = ['05022021', '08022021', '09022021']
+    # date_strings = ['05042021','06042021','07042021','08042021','09042021']
+    date_strings = trade_dates.load_file('recent.dates')
     
-    # prepare data 
-    download_raw_data.download_sec_bhavdata_full( date_strings )
-    prep_raw_data.prep_sec_bhavdata_full( date_strings )
+    # Download sec bhav data and prep for analysis 
+    download_sec_bhav_data.for_dates( date_strings )
+    prep_sec_bhav_data.for_dates( date_strings )
 
     # Get the top delivery by lacs 
     filter_top_deliv.filter_by_deliv_lacs (date_strings)
@@ -33,6 +32,7 @@ if __name__ == "__main__":
     # Get details of a particular group of symobls 
     white_list = constants.load_white_list_symbols() 
     filter_top_deliv.filter_by_white_list (date_strings, white_list )
+    # filter_top_deliv.filter_by_white_list (date_strings, ['HDFCBANK', 'ICICIBANK', 'KOTAKBANK'] )
 
     # download_sec_bhavdata_full(date_strings)
 

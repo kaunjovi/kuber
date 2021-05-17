@@ -73,9 +73,16 @@ def test_hello_world() :
 ```python
 import logging
 ...
+# logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(format='[%(filename)s:%(lineno)s - %(funcName)s()] %(message)s', level=logging.DEBUG)
+# logging.basicConfig(format='%(filename)s.%(lineno)s$ %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(filename)s.%(funcName)s().%(lineno)s $$ %(message)s', level=logging.DEBUG)
 logging.basicConfig(level=logging.DEBUG)
+
 ...
 logging.debug(f'Reading data from {len(raw_data_file_full_paths)} files.')
+
+
 
 ```
 
@@ -214,6 +221,116 @@ Automate
 
 If we take out the to x% (10?) top winning days, what does that do to the earnings. 
 What if we ask that about all the shares? Where do we have the most impact ? Any trends on those scrips ? 
+
+
+Good company, bad results 
+
+Tata consumer products Ltd 
+
+HCl tech 
+
+India mart intermesh 
+
+
+Intra day trading 
+- Do your homework at night. Time it. 
+- Action at 1 hr. Time it. 
+- 44 SMA. Is it bullish there. 
+- Morning. Is this bullish in the morning. First or second candlestick has to be that. 
+
+
+Chart patterns 
+box 
+Triangle 
+M 
+W 
+Flag 
+
+Siddharth Bhanushali 
+
+those who missed 
+pending orders - in the range 
+shorters - they will cover their short 
+
+What is your system ? 
+
+What is double bottom ? 
+W. At the bottom we should see big green candle. 
+
+
+Weekly chart 
+Or Daily chart 
+Not intraday 
+
+entry - buy at breakout of mid W 
+ 15 loss shoulg be ok 
+
+Mkt is expensive hobby. None can afford it. 
+Bhav bhagwan che
+
+What is back testing ? 
+
+Learn capabilities of charting tools on Kite. 
+https://kite.trade/docs/kite/charting/
+
+
+# Swing Trading For Beginners
+https://www.youtube.com/watch?v=vUbvxpUL54c
+https://www.youtube.com/watch?v=3AS6qJixHqc
+https://www.youtube.com/watch?v=um5SMZg8PiU
+
+Not intraday. 
+2 days to months. 
+
+Nifty average movement on a day 
+ATR -  A T range 
+Reward is unlikely to fit into the range of the day 
+Gap up / down is not happening in the day. It happens off the day. Hence not intraday. 
+
+find the direction of the trend first - up or down 
+SMA 44 should be the answer
+
+
+If in swing trading 
+    - Dont go in the same stock again 
+
+Stock selection @ weekend 
+    44 moving average 
+    44 days closing / average 
+    Average rising = buy
+    Average falling = sell 
+    Green candle near moving average 
+
+    Check for entry - at evening 
+    Next day - we shall put order. 
+
+    Entry - a little above the top of the candle. 
+    SL - lower of the low between candle and candle -1 
+
+    1:2 - SL : TGT 
+
+
+
+Daily chart 
+    No intraday 
+    5 to 10 days 
+
+
+Bhav bhagwan chhe 
+
+# Risk Management In Stock Market
+https://www.youtube.com/watch?v=kB4iz1PggKU
+
+Hedge with option 
+Hedge with future 
+Allocation in defensive sectors 
+
+# Technical Analysis Of Stocks 
+https://www.youtube.com/watch?v=njuFAOEkTMk
+
+
+
+
 
 
 
