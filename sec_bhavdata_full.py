@@ -2,7 +2,7 @@ import os.path
 import logging
 from constants import get_sec_bhavdata_file_name
 from constants import get_sec_bhavdata_url
-from download_data_from_web import download_from_url_to_file
+from util_bhav_file import download_from_url_to_file
 
 
 # file_count - number of files that are there in the folder after running this def

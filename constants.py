@@ -86,14 +86,16 @@ def get_filtered_by_wl(date_string) :
 # might be by doing fundamental analysis offline. 
 # you want to pick this from a file
 def load_white_list_symbols(): 
-    white_list = ['RELIANCE', 'HDFC', 'BAJAJFINSV', 'BAJFINANCE']
+    # white_list = ['LALPATHLAB']
+    white_list = ['RELIANCE']
+    white_list.extend( ['HDFC', 'BAJAJFINSV', 'BAJFINANCE'])
     white_list.extend( [ 'HDFCBANK', 'ICICIBANK', 'KOTAKBANK', 'AXISBANK', 'SBIN', 'IDFCFIRSTB'])
     white_list.extend( [ 'LALPATHLAB' , 'APOLLOHOSP' , 'METROPOLIS' , 'NH'])
     white_list.extend( [ 'RELAXO', 'BATAINDIA'])
     white_list.extend( [ 'DMART', 'TRENT'])
     white_list.extend( [ 'INFY', 'TCS'])
     white_list.extend( [ 'MARUTI', 'M&M', 'MOTHERSUMI'])
-    white_list.extend( [ 'JKCEMENT'])
+    white_list.extend( [ 'ULTRACEMCO', 'JKCEMENT'])
 
 
     return white_list 

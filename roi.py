@@ -42,8 +42,8 @@ def calculate_delta_series ( price_series_df ) :
         if column < data_columns_max -1 : 
 
             next_col_name = df_deltas.columns[column + 1 ]
-            delta_column = df_deltas.iloc[:, column + 1 ] - df_deltas.iloc[:, column ] 
-            df_deltas[next_col_name + '_delta'] = delta_column
+            delta_column = ((df_deltas.iloc[:, column + 1 ] - df_deltas.iloc[:, column ] ) / df_deltas.iloc[:, column ])*100
+            df_deltas[next_col_name + '_delta'] = delta_column 
 
         # elif column == data_columns_max : 
             # This is the last data column. There is nothing to compare against 
@@ -79,15 +79,20 @@ def calculate_delta_series ( price_series_df ) :
 
 
 def generate_price_series ( tickers, date_strings) : 
-    # logging.debug(f'Fetching data for {date_strings}')
+    logging.debug(f'Fetching data for {date_strings}')
 
     dfs = []
 
     for date_string in date_strings : 
         file_name = get_file_name (date_string)
         if os.path.isfile (file_name ) : 
+
+            logging.debug(f'Calculating for file {file_name}')
+
             date_df = pd.read_csv(file_name)
-            date_df = date_df[date_df['SYMBOL'].isin(tickers)] 
+            if len(tickers) > 0 : 
+                date_df = date_df[date_df['SYMBOL'].isin(tickers)] 
+
             date_df = date_df[date_df['SERIES']== 'EQ'] 
             # date_df = date_df.set_index('SYMBOL', drop=False) 
 
@@ -111,6 +116,9 @@ def generate_price_series ( tickers, date_strings) :
                 dfs = date_df
             else :  
                 dfs = pd.merge(dfs, date_df, on='SYMBOL')
+        
+        else : 
+            logging.debug(f'Could not calculate for file {file_name}')
 
 
     return dfs 
@@ -119,14 +127,28 @@ if __name__ == "__main__":
     
     logging.basicConfig(format='[%(filename)s:%(lineno)s - %(funcName)s()] %(message)s', level=logging.DEBUG)
 
-    date_strings = ['20200101' , '20200203' , '20200301', '20200401', '20200501', '20200601', '20200701', '20200803', '20200901']
+    # date_strings = ['20200101' , '20200203' , '20200301', '20200401', '20200501', '20200601', '20200701', '20200803', '20200901']
+
+    # date_strings = ['20200131', '20200228', '20200331']
+    date_strings = ['20200101', '20200331']
+    # date_strings.extend (['20200430', '20200529', '20200630'])
+    date_strings.extend (['20200630'])
+    # date_strings.extend (['20200731', '20200831', '20200930'])
+    date_strings.extend (['20200930'])
+    # date_strings.extend (['20201030', '20201130', '20201231'])
+    date_strings.extend (['20201231'])
+    date_strings.extend (['20210331'])
+
     # tickers = ['RELIANCE', 'HDFC']
-    tickers = constants.load_white_list_symbols()
+    # tickers = constants.load_white_list_symbols()
+    tickers = [] 
+
+    # logging.debug(f' white list of tickers {tickers}')
     price_series_df  = generate_price_series ( tickers, date_strings)
-    logging.debug(f'\n {price_series_df.head(10)}')
+    # logging.debug(f'\n {price_series_df.head(10)}')
 
     price_delta_series_df = calculate_delta_series ( price_series_df)
-    logging.debug(f'\n {price_delta_series_df.head(10)}')
+    logging.debug(f'\n {price_delta_series_df.head(40)}')
 
 
     # return_amount = fetch_return_amount ( roi_df)

@@ -40,7 +40,7 @@ def generate_top_average_delivery_file(date_strings) :
     return len(df_sorted_grouped.index), get_top_average_delivery_file_name
 
 
-# if __name__ == "__main__":
-#     logging.basicConfig(level=logging.DEBUG)
-#     date_strings = ['05042021','06042021','07042021','08042021','09042021']
-#     generate_top_average_delivery_file(date_strings)
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
+    date_strings = ['05042021','06042021','07042021','08042021','09042021']
+    generate_top_average_delivery_file(date_strings)

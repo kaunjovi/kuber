@@ -63,6 +63,7 @@ def test_hello_world() :
 ## HTML report on unit test coverage 
 
 ```
+/Users/kaunjovi/code/kuber/README.md
 % pipenv run coverage run --source=. -m pytest ; pipenv run coverage html
 ```
 
@@ -327,6 +328,19 @@ Allocation in defensive sectors
 
 # Technical Analysis Of Stocks 
 https://www.youtube.com/watch?v=njuFAOEkTMk
+
+
+## Calculate SMA
+
+- [Moving Averages in pandas](https://www.datacamp.com/community/tutorials/moving-averages-in-pandas)
+- [Moving averages with Python](https://towardsdatascience.com/moving-averages-in-python-16170e20f6c)
+
+## Is the trend up or down 
+
+
+## Detect touch and go in a graph 
+
+- https://stackoverflow.com/questions/59399896/detecting-value-crossing-between-columns-in-pandas
 
 
 

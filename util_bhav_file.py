@@ -1,8 +1,21 @@
-# import os
-# import logging
 import pandas as pd 
-# from  constants import get_top_delivery_file_name
-# from  constants import get_sec_bhavdata_file_name
+import urllib.request
+from urllib.error import HTTPError, URLError
+from socket import timeout
+import shutil
+import calendar
+
+
+# Download text from url and save it in a local file. 
+# Raise error if you cant. Most likely becuase the url was not existent. 
+# Can be moved to util actually
+def download_from_url_to_file(url_to_download_data_from, file_to_download_data_at) : 
+    try:
+        with urllib.request.urlopen(url_to_download_data_from, timeout=10) as response, open(file_to_download_data_at, 'wb') as out_file:
+            shutil.copyfileobj(response, out_file)
+    except timeout:
+        # logging.exception(f'Could not download data from {url_to_download_data_from}')
+        raise
 
 
 def prep_raw_bhv_data_for_analysis ( df ) : 
@@ -28,4 +41,16 @@ def prep_raw_bhv_data_for_analysis ( df ) :
     df = df[df['SERIES']=='EQ']
     df = df.sort_values('DELIV_LACS' , ascending=False)
 
+    ## We would like the date to be in yyyymmdd format. Easier to sort. 
+    df['DATE'] = df['DATE1'].apply(convert_date_yyyymmdd)
+
     return df 
+
+def convert_date_yyyymmdd ( date_string) : 
+    parts = date_string.strip().split('-')
+
+    yyyy = parts[2] 
+    mm = str(list(calendar.month_abbr).index(parts[1]))
+    dd = parts[0]
+
+    return yyyy + mm.zfill(2) + dd

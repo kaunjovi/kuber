@@ -8,14 +8,6 @@ from constants import get_url_to_download_data_from
 from constants import get_full_path_of_raw_data_file
 
 
-def download_from_url_to_file(url_to_download_data_from, file_to_download_data_at) : 
-    try:
-        with urllib.request.urlopen(url_to_download_data_from, timeout=10) as response, open(file_to_download_data_at, 'wb') as out_file:
-            shutil.copyfileobj(response, out_file)
-
-    except timeout:
-        # logging.exception(f'Could not download data from {url_to_download_data_from}')
-        raise
 
 # def download_data_for_date_string ( date_string ) : 
 #     url_to_download_data_from = get_url_to_download_data_from(date_string)
