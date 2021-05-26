@@ -18,23 +18,34 @@ $(document).ready( function () {
     var url = 'https://raw.githubusercontent.com/kaunjovi/kuber/main/data/401_reports/top_del.js'
 
     $.get(url, function (data){
-        response_string = JSON.parse(data) ; 
-        console.log(response_string)
+        // response_string = JSON.parse(data) ; 
+        // console.log(response_string)
         var dataSet = JSON.parse(data) ; 
         $('#table_id').DataTable({
             data : dataSet , 
+            paging: false , 
+            scrollY: 750 , 
             columns : [
 
 { title : "SYMBOL"} , 
 { title : "CLOSE_PRICE"} , 
 { title : "AVG_PRICE"} , 
-{ title : "TTL_TRD_QNTY"} , 
+{ title : "TTL_TRD_QNTY" ,  render: $.fn.dataTable.render.number(' ', '.', 0, '')} , 
 // { title : "NO_OF_TRADES"} , 
 { title : "DELIV_PER"} , 
-{ title : "DELIV_LACS"} , 
+{ title : "DELIV_LACS" , render: $.fn.dataTable.render.number(' ', '.', 0, '')} , 
 { title : "DATE"} 
 
             ]
+            , 
+            columnDefs: [
+{targets: 1, className: 'dt-body-right'}, 
+{targets: 2, className: 'dt-body-right'}, 
+{targets: 3, className: 'dt-body-right'}, 
+{targets: 4, className: 'dt-body-right'}, 
+{targets: 5, className: 'dt-body-right'}, 
+{targets: 6, className: 'dt-body-right'}
+  ]
         }) ; 
     })
 

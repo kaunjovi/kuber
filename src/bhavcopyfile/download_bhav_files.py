@@ -37,7 +37,19 @@ def download(trade_dates) :
             valid_trade_dates.append(trade_date)
         else : 
             logging.debug(f'Not available {bhav_file_to_download}')
-            # TODO : write code to download non existing files. 
+            url = util.get_bhav_url( trade_date)
+            logging.debug(f'URL {url}')
+
+            try : 
+                util.download_url_to_file(url, bhav_file_to_download )
+                bhav_files_new.append(bhav_file_to_download)
+                valid_trade_dates.append(trade_date)
+            except : 
+                # the file could not be downloaded.     
+                # might be the url was not available. 
+                # dont count this one. The discrepancy would show up. 
+                logging.debug(f'There was some problem accessing the URL.')
+
 
     bhav_files.extend(bhav_files_new)
 
