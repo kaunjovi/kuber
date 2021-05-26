@@ -15,10 +15,20 @@ if __name__ == "__main__":
 
     logging.debug(f'Running EOD process for {len(trade_dates)} day(s).')
 
-    bhav_files, fresh_bhav_files = bhav.download(trade_dates)
-    logging.debug(f'Downloaded {len(fresh_bhav_files)} files. Now {len(bhav_files)} are available.')
+# Step 1 - Get the raw files. 
+    trade_dates, bhav_files, bhav_files_new = bhav.download(trade_dates)
+    logging.debug(f'Downloaded {len(bhav_files_new)} files. Now {len(bhav_files)} are available.')
 
-    prepped_bhav_files, prepped_bhav_files_new = bhav.prep_for_analysis(bhav_files)
-    logging.debug(f'{len(prepped_bhav_files)} prepped files available for analysis. {len(prepped_bhav_files_new)} created new.')
+# Step 2 - Prep the raw files for analysis 
+    trade_dates, prepped_bhav_files, prepped_bhav_files_new = bhav.prep_for_analysis(trade_dates)
+    logging.debug(f'{len(prepped_bhav_files)} prepped files available for analysis.')
+    logging.debug(f'{len(prepped_bhav_files_new)} created new.')
+
+# Step 3 - Pull delivery figures of interest 
+    top_daily_delivery_files = bhav.generate_top_daily_delivery_files( trade_dates )
+    
+
+
+
 
     
