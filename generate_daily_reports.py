@@ -1,6 +1,7 @@
 import logging
 import src.util as util
 import src.bhavcopyfile as bhav
+import src.reports as reports
 
 
 # Generate daily reports. 
@@ -25,7 +26,10 @@ if __name__ == "__main__":
     logging.debug(f'{len(prepped_bhav_files_new)} created new.')
 
 # Step 3 - Pull delivery figures of interest 
-    top_daily_delivery_files = bhav.generate_top_daily_delivery_files( trade_dates )
+    top_daily_delivery_files = bhav.fetch_top_deliveries( trade_dates )
+
+# Step 4 - Generate the report files. 
+    reports.generate_top_del_report(trade_dates) 
     
 
 

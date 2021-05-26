@@ -1,4 +1,7 @@
-import src.util as util
+import sys, os
+sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/../.."))
+
+import src.util as util 
 
 def get_top_del_csv_name() : 
     return '/Users/kaunjovi/code/kuber/data/401_reports/top_del.csv'
