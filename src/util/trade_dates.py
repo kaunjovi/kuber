@@ -4,4 +4,7 @@
 # config file. 
 
 def load_trade_dates() : 
-    return ['20210525']
+    trade_dates = []
+    trade_dates.extend(['20210524', '20210525'])
+    
+    return trade_dates

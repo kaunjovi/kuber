@@ -12,26 +12,31 @@ import calendar
 # These result in modified files and hence have to be kept 
 # separate from the raw
 
-def prep_for_analysis (raw_bhav_files) : 
+def prep_for_analysis (trade_dates) : 
     prepped_bhav_files = []
     prepped_bhav_files_new = []
+    valid_trade_dates = []
 
-    for raw_bhav_file in raw_bhav_files : 
-        prep_file_name = util.gen_prep_file_name( raw_bhav_file)
+    for trade_date in trade_dates : 
+        raw_bhav_file = util.get_bhav_file_name( trade_date)
+        prep_file_name = util.get_prep_file_name( trade_date)
+
         if os.path.isfile(prep_file_name) : 
             logging.debug(f'Prepped file exists already.')
             logging.debug(f'{prep_file_name}')
             prepped_bhav_files.append(prep_file_name)
+            valid_trade_dates.append(trade_date)
         else : 
             logging.debug(f'Prepped file does not exist.')
             logging.debug(f'{prep_file_name}')
             isFileCreated = generate_prepped_bhav_copy( raw_bhav_file, prep_file_name)
             if isFileCreated == True : 
                 prepped_bhav_files_new.append(prep_file_name)
+                valid_trade_dates.append(trade_date)
 
     prepped_bhav_files.extend( prepped_bhav_files_new)
             
-    return prepped_bhav_files, prepped_bhav_files_new
+    return valid_trade_dates, prepped_bhav_files, prepped_bhav_files_new
 
 # Generate the prepped file without any checks.
 # If the file exists, just overwrite it. 

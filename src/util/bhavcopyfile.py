@@ -1,37 +1,37 @@
 import logging
 
-def gen_bhav_file_names(trade_dates=['20210526']) :
-    file_names = []
+# Find corresponding bhav file name, given a trade date. 
+def get_bhav_file_name(trade_date='20210526') :
     file_name_part1 = '/Users/kaunjovi/code/kuber/data/100_full_bhav_copy/sec_bhavdata_full_'
-    file_name_part3 = '.csv'
-    for trade_date in trade_dates : 
-        yyyy = trade_date[:4]
-        mm = trade_date[5:6].zfill(2)
-        dd = trade_date[6:8].zfill(2)
-        # logging.debug(f'yyyy {yyyy} mm {mm} dd {dd}')
+
+    yyyy = trade_date[:4]
+    mm = trade_date[5:6].zfill(2)
+    dd = trade_date[6:8].zfill(2)
+    # logging.debug(f'yyyy {yyyy} mm {mm} dd {dd}')
+    file_name_part2 = dd + mm + yyyy 
         
-        date_bhav_format = dd + mm + yyyy 
-        file_name = file_name_part1 + date_bhav_format + file_name_part3
-        file_names.append(file_name)
+    file_name_part3 = '.csv'
 
-    return file_names
+    return file_name_part1 + file_name_part2 + file_name_part3
 
-# Given a raw bhav file that we downloaded from the net. 
 # We are just looking for the name and location of the 
 # file that is prepped for analysis
-def gen_prep_file_name ( raw_bhav_file = '') : 
+def get_prep_file_name ( trade_date='20210526') : 
     
-    if raw_bhav_file == '' :
-        raw_bhav_file = '/Users/kaunjovi/code/kuber/data/100_full_bhav_copy/sec_bhavdata_full_26052021.csv'
-
-
     file_name_part1 = '/Users/kaunjovi/code/kuber/data/105_prepped_bhav_copy/'
-    file_name_part2 = get_yyyy_mm_dd_from_raw_file_name(raw_bhav_file)
+    file_name_part2 = trade_date
     file_name_part3 = '_sec_bhavdata_full.csv'
 
     prepped_file_name = file_name_part1 + file_name_part2  + file_name_part3
 
     return prepped_file_name  
+
+def get_top_daily_delivery_file_name ( trade_date='20210526') : 
+    part1 = '/Users/kaunjovi/code/kuber/data/220_top_daily_deliveries/'
+    part2 = trade_date
+    part3 = '_top_daily_delivery.csv'
+
+    return part1 + part2 + part3
     
 
 # get the date, in the correct format, from the raw data file name. 

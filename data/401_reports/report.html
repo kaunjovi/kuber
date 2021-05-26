@@ -1,0 +1,46 @@
+<html> 
+    <head> 
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+        
+    </head>
+    <body> 
+        <table id="table_id" class="display">
+
+        </table>
+
+<script type="text/javascript"> 
+$(document).ready( function () {
+
+    var url = 'https://raw.githubusercontent.com/kaunjovi/kuber/main/data/401_reports/top_del.js'
+
+    $.get(url, function (data){
+        response_string = JSON.parse(data) ; 
+        console.log(response_string)
+        var dataSet = JSON.parse(data) ; 
+        $('#table_id').DataTable({
+            data : dataSet , 
+            columns : [
+
+{ title : "SYMBOL"} , 
+{ title : "CLOSE_PRICE"} , 
+{ title : "AVG_PRICE"} , 
+{ title : "TTL_TRD_QNTY"} , 
+// { title : "NO_OF_TRADES"} , 
+{ title : "DELIV_PER"} , 
+{ title : "DELIV_LACS"} , 
+{ title : "DATE"} 
+
+            ]
+        }) ; 
+    })
+
+} );
+</script>
+
+
+    </body>
+</html>
